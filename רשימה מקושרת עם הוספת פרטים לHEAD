@@ -1,0 +1,38 @@
+# c
+typedef	struct student {
+	char id;
+	char name;
+	int grade;
+
+	struct student* next;
+
+
+}sstudent;
+
+
+int main()
+{
+
+	return 0;
+}
+
+  
+
+ sstudent* new_student(char* name, char* id, int grade)
+	{
+		sstudent* str = (sstudent*)malloc(sizeof(sstudent));
+		if (str != NULL) {
+			strcpy(std->name, name);
+			strcpy(str->id, id);
+			str->grade = grade;
+			str->next = NULL;
+		}
+		return str;
+
+	}
+  
+ sstudent* add_front(sstudent* head, sstudent *str) {
+	 str->next = head;
+	 return str;
+
+  }
