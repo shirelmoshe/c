@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#include <conio.h>
+#pragma warning(disable:4996)
+
+
+
+main()
+{
+	int num;
+	printf("pls enter how much numbers of int that will be sumed");
+	scanf("%d", &num);
+	int* ptr;
+	int sum2=0;
+	int num2 = 0;
+	ptr = malloc(num * sizeof(int));
+	for (size_t i = 0; i < num; i++)
+	{
+		scanf("%d", &num2);
+		sum2 = sum2 + num2;
+		ptr = num2;
+		ptr++;
+	}
+	printf("%d", sum2);
+
+	return 0;
+}
