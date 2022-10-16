@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#pragma warning(disable:4996)
+#define SIZE 1024;
+int main()
+{
+    char buffer[SIZE];
+    bool keep_going = true;
+    FILE* f;
+    f =fopen("file.txt", "w");
+    if (f == NULL) {
+        printf("error");
+    }
+    else {
+
+        while (keep_going)
+        {
+            fgets(buffer, SIZE, stdin);
+          
+            if (strcmp(buffer, "quit") == 0) {
+                keep_going = false;
+               }
+            else {
+                fputs(buffer, f);
+            }
+        }
+        fclose(f);
+      
+    }
+}
+    
