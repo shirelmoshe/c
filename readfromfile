@@ -1,0 +1,22 @@
+# c
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+int main()
+{
+    FILE* f;
+    f =fopen("file.txt", "r");
+    if (f == NULL) {
+        printf("error");
+    }
+    else {
+        char c;
+        while ((c = fgetc(f) != EOF)) {
+            putchar(c);
+        }
+        fclose(f);
+        {
+
+        }
+    }
+}
