@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main(){
+FILE* f;
+FILE*copy;
+f=fopen("file.txt","r");
+copy=fopen("file.txt","w");
+if(copy==NULL|| f==NULL){
+   printf("erorr");
+   return 1;
+   }
+while((c =fgetc(f) != EOF){
+    fputc(c,copy)
+    }
+ fcolse(f);
+ fclose(copy);
+ return
+ }
