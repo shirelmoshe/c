@@ -1,0 +1,155 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#pragma warning(disable: 4996)
+
+
+struct dictionary
+{
+	int Key;
+	int Value;
+	struct dictionary* Next;
+	struct dictionary* Prev;
+};
+
+struct dictionary* Head = NULL;
+struct dictionary* Tail = NULL;
+struct dictionary* Old;
+struct dictionary* move;
+
+void Add(int key, int value)
+{
+    move = (struct dictionary*)malloc(sizeof(struct dictionary));
+	if (!move)
+	{
+		exit(1);
+	}
+	if (Head == NULL)
+	{
+		Head = move;
+		Tail = move;
+		move->Next = NULL;
+		move->Prev = NULL;
+	}
+	else
+	{
+		Tail = move;
+		move->Next = NULL;
+		move->Prev = Old;
+		Old->Next = move;
+	}
+	move->Key = key;
+	move->Value = value;
+	Old = move;
+
+}
+
+
+struct dictionary* Search(int key_Search)
+{
+	struct dictionary* move = Head;
+	struct dictionary* Checking = Head;
+	while (move != NULL)
+	{
+		Checking = move;
+		move = move->Next;
+		if (Checking->Key == key_Search)
+		{
+			return Checking;
+		}
+		
+	}
+	printf("Not found\n");
+	struct dictionary* ret = NULL;
+	return ret;
+}
+
+
+void remove_1(int key_remove)
+{
+	struct dictionary* release;
+	struct dictionary* location = Search(key_remove);
+	if (!location)
+	{
+		printf("The key was not found\n");
+		exit(1);
+
+	}
+	else
+	{
+		if (location == Head && location->Next == NULL)
+		{
+			Tail = NULL;
+			Head = NULL;
+			Old = NULL;
+			free(move);
+		}
+		else if (location == Head)
+		{
+			release = location;
+			location = location->Next;
+			location->Prev = NULL;
+			Head = location;
+			free(release);
+
+
+		}
+		else if (location == Tail)
+		{
+			release = location;
+			location = location->Prev;
+			location->Next = NULL;
+			Tail = location;
+			free(release);
+		}
+		else
+		{
+			location->Next->Prev = location->Prev;
+			location->Prev->Next = location->Next;
+			free(location);
+		}
+	
+	}
+
+
+}
+
+
+int main()
+{
+	int userResponse=1;
+	while (userResponse != 0)
+	{
+		printf("Press 1 to add two numbers\nPress 2 to see what the value is contains\n");
+		userResponse = getch();
+
+	switch (userResponse)
+	{
+	case '1': printf("Enter value key and value value\n");
+		int key;
+		int val;
+		scanf("%d%d", &key, &val);
+		Add(key, val);
+		break;
+	case '2': printf("Enter a key to find if you have a value\n");
+		int key_search;
+		scanf("%d", &key_search);
+		struct dictionary* print = Search(key_search);
+		if (!print)
+		{
+			printf("There is no such key\n");
+		}
+		else
+		{
+			printf("the value is %d\n", print->Value);
+		}
+		break;
+
+	default:
+		printf("error\n");
+		break;
+	}
+	}
+	return 0;
+}
