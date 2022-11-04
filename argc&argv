@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h> 
+#include <string.h>
+#pragma warning(disable:4996)
+
+void testCopy(char* source, char* destination)
+{
+	FILE* f = fopen(source, "r");
+	if (!f)
+	{
+		exit(f);
+	}
+	int Count = 0;
+	char Temporary;
+	while (fread(&Temporary, sizeof(char), 1, f))
+	{
+		Count++;
+	}
+	fclose(f);
+
+
+	f = fopen(source, "r");
+	if (!f)
+	{
+		exit(f);
+	}
+	char* poi = (char*)malloc(sizeof(char) * Count);
+	char* origin = poi;
+	fread(poi, sizeof(char), Count, f);
+	fclose(f);
+
+	f = fopen(destination, "w");
+	if (!f)
+	{
+		exit(1);
+	}
+	fwrite(poi, sizeof(char), Count, f);
+	fclose(f);
+	free(origin);
+
+}
+
+
+
+
+
+int main(int argc, char* argv[])
+{
+	testCopy(argv[1], argv[2]);
+
+	return 0;
+}
