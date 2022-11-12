@@ -1,0 +1,5 @@
+﻿  Runner.cpp
+C:\Users\User\source\repos\reader\reader\Runner.cpp(12,6): warning C4101: 'lexi': unreferenced local variable
+  reader.cpp
+  Generating Code...
+  reader.vcxproj -> C:\Users\User\source\repos\reader\x64\Debug\reader.exe
